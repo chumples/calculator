@@ -1,9 +1,16 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    background: linear-gradient(to bottom right, rgb(66, 63, 63), black); 
+}
+
 .btn {
     color: white;
     background-color: darkgray;
     text-align: center;
     justify-content: center;
-    padding: 0px;
+    padding: 0;
     width: 3rem;
     height: 2rem;
     border-radius: 10px;
@@ -13,7 +20,10 @@
 }
 
 .calculator {
+    display: grid;
     min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat();
     padding: 0;
     margin: 0;
     display: flex;
