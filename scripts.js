@@ -1,6 +1,6 @@
 total = 0;
 
-const add = function(a, b) {
+const add = function add(a, b) {
   total = a + b;
   return total;
 };
@@ -10,12 +10,23 @@ const subtract = function(a, b) {
   return total;
 };
 
+const multiply = function(array) {
+  return array.reduce((a, b) => a * b, 1);
+};
+
+const divide = function(a, b) {
+    total = a / b;
+    return total;
+};
+
 const sum = function(array) {
   return array.reduce((total, current) => total + current, 0);
 };
 
-const multiply = function(array) {
-  return array.reduce((a, b) => a * b, 1);
+const operate = function(operator, a, b) {
+    a = Number(a);
+    b = Number(b);
+
 };
 
 const power = function(a, b) {
