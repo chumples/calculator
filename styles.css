@@ -18,24 +18,23 @@ body {
     min-height: 100vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    outline: none;
 }
 
 .calculator-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     outline: none;
-    background-color: rgba(255, 255, 255, .75);
+    background-color: rgba(255, 255, 255, 0.284);
+    border-radius: 10px;
+    color: white;
 }
 
 .calculator-grid > button:hover {
-    background-color: rgba(255, 255, 255, .90);
+    background-color: rgba(255, 255, 255, .50);
 }
 
-.span-two {
-    grid-column: span 2;
-    background-color: crimson;
-}
 
 .output {
     grid-column: 1 / -1;
@@ -48,6 +47,9 @@ body {
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
+    border-radius: 10px;
+    outline: none;
+    
 }
 
 .output .previous-operand {
@@ -56,11 +58,29 @@ body {
 }
 
 .output .current-operand {
-    color: white;
+    color: black;
     font-size: 2.5rem;
 }
 
+#operation {
+    background-color: darkorange
+}
 
+#operation {
+    button::hover chartreuse;
+}
+
+#allClear {
+    background-color: crimson;
+}
+
+#delete {
+    background-color: crimson;
+}
+
+.span-two {
+    grid-column: span 2;
+}
 /* 
 .btn {
     color: white;
