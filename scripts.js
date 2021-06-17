@@ -1,85 +1,130 @@
-const calculator = document.querySelector('.calculator');
-const keys = calculator.querySelector('.buttons');
-const display = document.querySelector('.display');
+class Calculator {
+    constructor(previousOperandTextElement, currentOperandTextElement) {
+        this.previousOperandTextElement = previousOperandTextElement
+        this.currentOperandTextElement = currentOperandTextElement
+        this.clear()
+    }
 
+    clear() {
+        this.currentOperand = ''
+        this.previousOperand = ''
+        this.operation = undefined
+    }
 
-keys.addEventListener('click', e => {
-    const key = e.target;
-    const action = key.dataset.action;
+    delete() {
+        this.currentOperand = this.currentOperand.toString().slice(0, -1)
+    }
 
-    if (e.target.matches('button')) {
-};
+    appendNumber(number) {
+        if (number === '.' && this.currentOperand.includes('.')) return
+        this.currentOperand = this.currentOperand.toString() + number.toString()
+    }
 
-    if (!action) {
-    console.log('number key!')
-};
+    chooseOperation(operation) {
+        if (this.currentOperand === '') return
+        if (this.previousOperand !== '') {
+            this.compute()
+        }
+        this.operation = operation
+        this.previousOperand = this.currentOperand
+        this.currentOperand = ' '
+    }
 
-if (
-    action === 'add' ||
-    action === 'subtract' ||
-    action === 'multiply' ||
-    action === 'divide'
-) {
-    console.log('operator key!')
-};
+    compute() {
+        let computation;
+        const prev = parseFloat(this.previousOperand) 
+        const current = parseFloat(this.currentOperand)
+        if (isNaN(prev) || isNaN(current)) return
+        switch (this.operation) {
+            case '+':
+                computation = prev + current
+                break
+            case '-':
+                computation = prev - current
+                break
+            case '&times':
+                computation = prev * current
+                break
+            case '÷':
+                computation = prev / current
+                break
+            default:
+                return                  
+        }
+        this.currentOperand = computation
+        this.operation = undefined
+        this.previousOperand = '' 
+    }
 
-if (action === 'decimal') {
-    console.log('decimal key!')
-};
+    getDisplayNumber (number) {
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
+        const decimalDigits = stringNumber.split('.')[1]
+        let integerDisplay
+        if (isNaN(integerDigits)) {
+            integerDisplay = ''
+        } else {
+            integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+        }
+        if (decimalDigits != null) {
+            return `${integerDisplay}.${decimalDigits}`
+        } else {
+            return integerDisplay
+        }
+    }
+    
 
-if (action === 'clear') {
-    console.log('clear key!')
-};
+    updateDisplay() {
+        this.currentOperandTextElement.innerText = 
+        this.getDisplayNumber(this.currentOperand)
+        if (this.operation != null) {
+        this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+        } else { 
+            this.previousOperandTextElement.innerText = ''
+        }
+    }
+}
 
-if (action === 'calculate') {
-    console.log('equal key!')
-};
+const numberButtons = document.querySelectorAll('[data-number]')
+const operationButtons = document.querySelectorAll('[data-operation]')
+const equalsButton = document.querySelector('[data-equals]')
+const deleteButton = document.querySelector('[data-delete]')
+const allClearButton = document.querySelector('[data-all-clear]')
+const previousOperandTextElement = document.querySelector('[data-previous-operand]')
+const currentOperandTextElement = document.querySelector('[data-current-operand]')
 
-if (action === 'delete') {
-    console.log('delete key!')
-};
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
-});
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.appendNumber(button.innerText)
+        calculator.updateDisplay()
+    })
+})
 
-total = 0;
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.innerText)
+        calculator.updateDisplay()
+    })
+})
 
-const add = function add(a, b) {
-  total = a + b;
-  return total;
-};
+equalsButton.addEventListener('click', button => {
+    calculator.compute()
+    calculator.updateDisplay()
+})
 
-const subtract = function(a, b) {
-  total = a - b;
-  return total;
-};
+allClearButton.addEventListener('click', button => {
+    calculator.clear()
+    calculator.updateDisplay()
+})
 
-const multiply = function(array) {
-  return array.reduce((a, b) => a * b, 1);
-};
+equalsButton.addEventListener('click', button => {
+    calculator.compute()
+    calculator.updateDisplay()
+})
 
-const divide = function(a, b) {
-    total = a / b;
-    return total;
-};
-
-const sum = function(array) {
-  return array.reduce((total, current) => total + current, 0);
-};
-
-const operate = function(operator, a, b) {
-    a = Number(a);
-    b = Number(b);
-
-};
-
-const power = function(a, b) {
-	return Math.pow(a, b);
-};
-
-const factorial = function factorialize(a) {
-  if(a === 0)
-    return 1;
-  else {
-    return (a * factorialize(a - 1));
-  }
-};
+deleteButton.addEventListener('click', button => {
+    calculator.delete()
+    calculator.updateDisplay()
+})

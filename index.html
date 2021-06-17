@@ -2,26 +2,36 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>App</title>
+    <title>Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="calculator">
-        <div class="display">1234567890<br>
-            <!-- <div class="previous-operand"></div>
-            <div class="current-operand"></div>
-            </div> -->
-            <div class="buttons">
-            <button class="btn" id="clear" data-action="clear">CLEAR</button><button class="btn" id="delete" data-action="delete">DEL</button><br>
-            <button class="btn">7</button><button class="btn">8</button><button class="btn">9</button><button class="operators" data-action="divide">÷</button><br>
-            <button class="btn">4</button><button class="btn">5</button><button class="btn">6</button><button class="operators" data-action="multiply">&times;</button><br>
-            <button class="btn">1</button><button class="btn">2</button><button class="btn">3</button><button class="operators" data-action="subtract">-</button><br>
-            <button class="btn">0</button><button class="btn" data-action="decimal">.</button><button class="btn" data-action="calculate">=</button><button class="operators" data-action="add">+</button>
-            </div>
+    <div class="calculator-grid">
+        <div class="output">
+            <div data-previous-operand class="previous-operand"></div>
+            <div data-current-operand class="current-operand"></div>
         </div>
+        <button data-all-clear class="span-two" id ="allClear">AC</button>    
+        <button data-delete class="span-two" id="delete">DEL</button>
+        <button data-number>7</button>    
+        <button data-number>8</button>    
+        <button data-number>9</button>    
+        <button data-operation>÷</button>    
+        <button data-number>4</button>    
+        <button data-number>5</button>    
+        <button data-number>6</button>    
+        <button data-operation>&times</button>    
+        <button data-number>1</button>    
+        <button data-number>2</button>    
+        <button data-number>3</button>    
+        <button data-operation>-</button>    
+        <button data-number>0</button>    
+        <button data-number>.</button>    
+        <button data-equals>=</button>    
+        <button data-operation>+</button>    
     </div>
+    <script charset="utf-8" src="scripts.js" ></script>
 </body>
-<script charset="utf-8" src="scripts.js"></script>
-</html>
+</html>!
