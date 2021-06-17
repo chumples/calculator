@@ -66,8 +66,8 @@ body {
     background-color: darkorange
 }
 
-#operation {
-    button::hover chartreuse;
+#operation.button:hover {
+    background-color: chartreuse;
 }
 
 #allClear {

@@ -85,6 +85,13 @@ class Calculator {
     }
 }
 
+// window.addEventListener("keydown", keyPress);
+
+
+// function keyPress(e) {
+//     if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+// }
+
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
@@ -128,3 +135,5 @@ deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
+// use keypress for + and * 
