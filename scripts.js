@@ -46,8 +46,14 @@ class Calculator {
                 computation = prev * current
                 break
             case '÷':
+                if ( current !== 0) {
                 computation = prev / current
-                break
+                } else {
+                    alert('YOU CANNOT DIVIDE BY ZERO')
+                    calculator.clear()
+                    calculator.updateDisplay()
+                }  
+                break 
             default:
                 return                  
         }
@@ -109,6 +115,12 @@ numberButtons.forEach(button => {
     })
 })
 
+document.addEventListener('keydown', logKey);
+
+function logKey(e) {
+    equals
+}
+
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
@@ -116,10 +128,7 @@ operationButtons.forEach(button => {
     })
 })
 
-equalsButton.addEventListener('click', button => {
-    calculator.compute()
-    calculator.updateDisplay()
-})
+
 
 allClearButton.addEventListener('click', button => {
     calculator.clear()

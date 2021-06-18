@@ -81,6 +81,10 @@ body {
 .span-two {
     grid-column: span 2;
 }
+
+#equals {
+    background-color: rgb(103, 163, 200);
+}
 /* 
 .btn {
     color: white;
